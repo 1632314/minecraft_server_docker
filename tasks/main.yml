@@ -1,0 +1,29 @@
+---
+- name: 'Create directory for container data'
+  file:
+    path: "{{ minecraft_server_data_dir }}"
+    state: "directory"
+    mode: 0744
+
+- name: 'Send environment file for Minecraft docker'
+  template:
+    src: "minecraft_server.env.j2"
+    dest: "{{ minecraft_server_data_dir }}/minecraft_server.env"
+    mode: 0644
+
+- name: 'Deploy Minecraft Server'
+  community.docker.docker_container:
+    name: "minecraft-server"
+    hostname: "minecraft-server"
+    image: "itzg/minecraft-server:{{ minecraft_server_image_version }}"
+    state: started
+    ports:
+      - "{{ minecraft_server_port }}:25565"
+    env:
+      EULA: "true"
+    env_file: "{{ minecraft_server_data_dir }}/minecraft_server.env"
+    mounts:
+      - source: "{{ minecraft_server_data_dir }}"
+        target: "/data"
+        read_only: false
+        type: bind

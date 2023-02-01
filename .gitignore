@@ -1,0 +1,4 @@
+hosts
+ansible.cfg
+group_vars
+.fact_cache

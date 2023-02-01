@@ -1,0 +1,15 @@
+---
+galaxy_info:
+  role_name: minecraft_server_docker
+  author: "1632314"
+  description: Generates a minecraft server inside a docker container
+  issue_tracker_url: ""
+  license: MIT
+  min_ansible_version: "2.4"
+  platforms:
+  - name: Ubuntu
+    versions:
+    - focal
+  galaxy_tags:
+  - system
+dependencies: []
