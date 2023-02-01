@@ -4,10 +4,10 @@ minecraft_server_data_dir: "/app/data"
 minecraft_server_image_version: "latest"
 minecraft_server_port: 25565
 # Server type (optional)
-minecraft_server_type: "Vanilla"
-minecraft_server_version: "1.19.2"
-minecraft_server_type_version: "43.2.3"
-minecraft_server_course_forge_modpack: "create-flavored"
+minecraft_server_type:
+minecraft_server_version:
+minecraft_server_type_version:
+minecraft_server_course_forge_modpack:
 # Server config https://minecraft.fandom.com/wiki/Server.properties
 minecraft_server_motd:
 minecraft_server_difficulty:
@@ -34,8 +34,8 @@ minecraft_server_pvp:
 minecraft_server_level_type:
 minecraft_server_online_mode:
 minecraft_server_allow_fligth:
-minecraft_server_max_memory: "8G"
-minecraft_server_init_memory: "8G"
+minecraft_server_max_memory: "6G"
+minecraft_server_init_memory: "6G"
 minecraft_server_jvm_opts:
 minecraft_server_exec_directly:
 minecraft_server_stop_server_announce_delay:

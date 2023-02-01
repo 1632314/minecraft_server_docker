@@ -106,11 +106,12 @@ version: "3"
 
 services:
   mc:
+    container_name: minecraft_server
     image: itzg/minecraft-server
     ports:
       - {{ minecraft_server_port }}:25565
     environment:
-      EULA: TRUE
+      EULA: "TRUE"
 {% if minecraft_server_course_forge_modpack is not none %}
       TYPE: AUTO_CURSEFORGE
       CF_SLUG: "{{ minecraft_server_course_forge_modpack }}"
@@ -121,10 +122,10 @@ services:
       MOTD: "{{ minecraft_server_motd | default("My server") }}"
       DIFFICULTY: "{{ minecraft_server_difficulty | default("normal") | lower}}"
 {% if minecraft_server_whitelist %}
-      ENABLE_WHITELIST: TRUE
+      ENABLE_WHITELIST: "TRUE"
       WHITELIST: {% for player in minecraft_server_whitelist %}"{{player}}",{% endfor %}
 {% else %}
-      ENABLE_WHITELIST: FALSE
+      ENABLE_WHITELIST: "FALSE"
 {% endif %}
 {% if minecraft_server_max_players is not none %}
       MAX_PLAYERS: "{{ minecraft_server_max_players | string }}"
@@ -186,7 +187,7 @@ services:
 {% if minecraft_server_allow_fligth is not none %}
       ALLOW_FLIGHT: "{{ minecraft_server_allow_fligth | string | upper }}"
 {% endif %}
-{% if minecraft_server_max_memory is sameas minecraft_server_init_memory and minecraft_server_max_memory is not none %}
+{% if minecraft_server_max_memory == minecraft_server_init_memory and minecraft_server_max_memory is not none %}
       MEMORY: "{{ minecraft_server_max_memory }}"
 {% elif minecraft_server_max_memory >  minecraft_server_init_memory %}
       INIT_MEMORY: "{{ minecraft_server_init_memory }}"
