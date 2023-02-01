@@ -108,9 +108,9 @@ services:
   mc:
     image: itzg/minecraft-server
     ports:
-      - "{{ minecraft_server_port }}":25565
+      - {{ minecraft_server_port }}:25565
     environment:
-      EULA: "TRUE"
+      EULA: TRUE
 {% if minecraft_server_course_forge_modpack is not none %}
       TYPE: AUTO_CURSEFORGE
       CF_SLUG: "{{ minecraft_server_course_forge_modpack }}"
@@ -218,4 +218,4 @@ services:
     restart: unless-stopped
     volumes:
       # attach a directory relative to the directory containing this compose file
-      - ./data
+      - .:/data
