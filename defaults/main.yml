@@ -1,6 +1,7 @@
 ---
 # Docker image and volume (Required)
 minecraft_server_data_dir: "/app/data"
+minecraft_server_mods_dir_on_host:
 minecraft_server_image_version: "latest"
 minecraft_server_port: 25565
 # Server type (optional)
@@ -9,8 +10,8 @@ minecraft_server_version:
 minecraft_server_type_version:
 minecraft_server_course_forge_modpack:
 # Server config https://minecraft.fandom.com/wiki/Server.properties
-minecraft_server_motd:
-minecraft_server_difficulty:
+minecraft_server_motd: Minecraft Server Version {{ minecraft_server_version | default("VANILLA") }} deployed using ansible
+minecraft_server_difficulty: normal
 minecraft_server_whitelist:
 minecraft_server_max_players:
 minecraft_server_max_world_size:

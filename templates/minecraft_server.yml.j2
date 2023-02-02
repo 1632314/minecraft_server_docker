@@ -1,107 +1,3 @@
-{# {% if minecraft_server_course_forge_modpack is not none %}
-TYPE=AUTO_CURSEFORGE
-CF_SLUG={{ minecraft_server_course_forge_modpack }}
-{% else %}
-TYPE={{ minecraft_server_type | default("VANILLA") | upper }}
-VERSION={{ minecraft_server_version | default("LATEST") | upper}}
-{% endif %}
-MOTD={{ minecraft_server_motd | default("My server") }}
-DIFFICULTY={{ minecraft_server_difficulty | default("normal") | lower}}
-{% if minecraft_server_whitelist %}
-ENABLE_WHITELIST=TRUE
-WHITELIST={% for player in minecraft_server_whitelist %}{{player}},{% endfor %}
-{% else %}
-ENABLE_WHITELIST=FALSE
-{% endif %}
-
-{% if minecraft_server_max_players is not none %}
-MAX_PLAYERS={{ minecraft_server_max_players | string }}
-{% endif %}
-{% if minecraft_server_max_world_size is not none %}
-MAX_WORLD_SIZE={{ minecraft_server_max_world_size | string }}
-{% endif %}
-{% if minecraft_server_allow_nether is not none %}
-ALLOW_NETHER={{ minecraft_server_allow_nether | string | upper}}
-{% endif %}
-{% if minecraft_server_announce_players_achivements is not none %}
-ANNOUNCE_PLAYER_ACHIEVEMENTS={{ minecraft_server_announce_players_achivements | string | upper}}
-{% endif %}
-{% if minecraft_server_enable_command_block is not none %}
-ENABLE_COMMAND_BLOCK={{ minecraft_server_enable_command_block | string | upper}}
-{% endif %}
-{% if minecraft_server_force_gamemode is not none %}
-FORCE_GAMEMODE={{ minecraft_server_force_gamemode | string | upper }}
-{% endif %}
-{% if minecraft_server_generate_structures is not none %}
-GENERATE_STRUCTURES={{ minecraft_server_generate_structures | string | upper }}
-{% endif %}
-{% if minecraft_server_hardcore is not none %}
-HARDCORE={{ minecraft_server_hardcore | string | upper }}
-{% endif %}
-{% if minecraft_server_snooper is not none %}
-SNOOPER={{ minecraft_server_snooper | string | upper }}
-{% endif %}
-{% if minecraft_server_max_build_height is not none %}
-MAX_BUILD_HEIGHT={{ minecraft_server_max_build_height | string }}
-{% endif %}
-{% if minecraft_server_max_tick is not none %}
-MAX_TICK={{ minecraft_server_max_tick | string }}
-{% endif %}
-{% if minecraft_server_spawn_animals is not none %}
-SPAWN_ANIMALS={{ minecraft_server_spawn_animals | string | upper }}
-{% endif %}
-{% if minecraft_server_spawn_monsters is not none %}
-SPAWN_MONSTERS={{ minecraft_server_spawn_monsters | string | upper }}
-{% endif %}
-{% if minecraft_server_spawn_npcs is not none %}
-SPAWN_NPCS={{ minecraft_server_spawn_npcs | string | upper }}
-{% endif %}
-{% if minecraft_server_spawn_protection is not none %}
-SPAWN_PROTECTION={{ minecraft_server_spawn_protection | string | upper }}
-{% endif %}
-{% if minecraft_server_seed is not none %}
-SEED={{ minecraft_server_seed | string }}
-{% endif %}
-{% if minecraft_server_mode is not none %}
-MODE={{ minecraft_server_mode | string | lower }}
-{% endif %}
-{% if minecraft_server_pvp is not none %}
-PVP={{ minecraft_server_pvp | string | upper }}
-{% endif %}
-{% if minecraft_server_level_type is not none %}
-LEVEL_TYPE={{ minecraft_server_level_type | string | lower }}
-{% endif %}
-{% if minecraft_server_allow_fligth is not none %}
-ALLOW_FLIGHT={{ minecraft_server_allow_fligth | string | upper }}
-{% endif %}
-{% if minecraft_server_max_memory is sameas minecraft_server_init_memory and minecraft_server_max_memory is not none %}
-MEMORY={{ minecraft_server_max_memory }}
-{% elif minecraft_server_max_memory >  minecraft_server_init_memory %}
-INIT_MEMORY={{ minecraft_server_init_memory }}
-MAX_MEMORY={{ minecraft_server_max_memory }}
-{% endif %}
-{% if minecraft_server_jvm_opts is not none %}
-JVM_OPTS={{ minecraft_server_jvm_opts }}
-{% endif %}
-{% if minecraft_server_exec_directly is not none %}
-EXEC_DIRECTLY={{ minecraft_server_exec_directly | string | upper}}
-{% endif %}
-{% if minecraft_server_stop_server_announce_delay is not none %}
-STOP_SERVER_ANNOUNCE_DELAY={{ minecraft_server_stop_server_announce_delay | string }}
-{% endif %}
-{% if minecraft_server_tune_virtualized is not none %}
-TUNE_VIRTUALIZED={{ minecraft_server_tune_virtualized | string | upper }}
-{% endif %}
-{% if minecraft_server_tune_nursery_sizes is not none %}
-TUNE_NURSERY_SIZES={{ minecraft_server_tune_nursery_sizes | string | upper }}
-{% endif %}
-{% if minecraft_server_enable_rolling_logs is not none %}
-ENABLE_ROLLING_LOGS={{ minecraft_server_enable_rolling_logs | string | upper }}
-{% endif %}
-{% if minecraft_server_timezone is not none %}
-TIMEZONE={{ minecraft_server_timezone }}
-{% endif %} #}
-
 version: "3"
 
 services:
@@ -117,7 +13,10 @@ services:
       CF_SLUG: "{{ minecraft_server_course_forge_modpack }}"
 {% else %}
       TYPE: "{{ minecraft_server_type | default("VANILLA") | upper }}"
-      VERSION: "{{ minecraft_server_version | default("LATEST") | upper}}"
+      VERSION: "{{ minecraft_server_version | default("LATEST") | upper }}"
+{% if minecraft_server_type_version is not none %}
+      {{ minecraft_server_type | default("VANILLA") | upper }}_VERSION: "{{ minecraft_server_type_version }}"
+{% endif %}
 {% endif %}
       MOTD: "{{ minecraft_server_motd | default("My server") }}"
       DIFFICULTY: "{{ minecraft_server_difficulty | default("normal") | lower}}"
