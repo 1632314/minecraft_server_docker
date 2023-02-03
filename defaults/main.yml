@@ -5,38 +5,38 @@ minecraft_server_mods_dir_on_host:
 minecraft_server_image_version: "latest"
 minecraft_server_port: 25565
 # Server type (optional)
-minecraft_server_type:
-minecraft_server_version:
+minecraft_server_type: VANILLA
+minecraft_server_version: LATEST
 minecraft_server_type_version:
 minecraft_server_course_forge_modpack:
 # Server config https://minecraft.fandom.com/wiki/Server.properties
-minecraft_server_motd: Minecraft Server Version {{ minecraft_server_version | default("VANILLA") }} deployed using ansible
+minecraft_server_motd: Minecraft {{ minecraft_server_type | default("VANILLA") }} Server Version {{ minecraft_server_version | default("LATEST") }} deployed using ansible
 minecraft_server_difficulty: normal
 minecraft_server_whitelist:
-minecraft_server_max_players:
-minecraft_server_max_world_size:
-minecraft_server_allow_nether:
-minecraft_server_announce_players_achivements:
-minecraft_server_enable_command_block:
+minecraft_server_max_players: 10
+minecraft_server_max_world_size: 10000
+minecraft_server_allow_nether: true
+minecraft_server_announce_players_achivements: true
+minecraft_server_enable_command_block: false
 minecraft_server_force_gamemode:
-minecraft_server_generate_structures:
-minecraft_server_hardcore:
+minecraft_server_generate_structures: true
+minecraft_server_hardcore: false
 minecraft_server_snooper:
-minecraft_server_max_build_height:
-minecraft_server_max_tick:
-minecraft_server_spawn_animals:
-minecraft_server_spawn_monsters:
-minecraft_server_spawn_npcs:
+minecraft_server_max_build_height: 256
+minecraft_server_max_tick: 60000
+minecraft_server_spawn_animals: true
+minecraft_server_spawn_monsters: true
+minecraft_server_spawn_npcs: true
 minecraft_server_spawn_protection: 16
 minecraft_server_view_distance: 10
 minecraft_server_seed:
 minecraft_server_mode:
 minecraft_server_pvp:
 minecraft_server_level_type:
-minecraft_server_online_mode:
-minecraft_server_allow_fligth:
-minecraft_server_max_memory: "6G"
-minecraft_server_init_memory: "6G"
+minecraft_server_online_mode: true
+minecraft_server_allow_fligth: false
+minecraft_server_max_memory: "1G"
+minecraft_server_init_memory: "1G"
 minecraft_server_jvm_opts:
 minecraft_server_exec_directly:
 minecraft_server_stop_server_announce_delay:
